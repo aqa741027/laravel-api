@@ -53,7 +53,7 @@ class UserController extends Controller
         }
 
         return response()->json([
-            'deploy_version' => 'v1.0.1',
+            'deploy_version' => 'v1.0.4',
             'deploy_time' => now()->toDateTimeString(),
             'server' => gethostname(),
             'cache_status' => $cacheStatus,
