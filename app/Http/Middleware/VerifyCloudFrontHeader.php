@@ -10,6 +10,10 @@ class VerifyCloudFrontHeader
 {
     public function handle(Request $request, Closure $next): Response
     {
+        if (!app()->environment('production')) {
+            return $next($request);
+        }
+
         $expected = config('services.cloudfront.secret_header');
         $actual = $request->header('X-From-CloudFront');
 
