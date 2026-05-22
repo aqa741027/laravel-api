@@ -18,6 +18,7 @@ class UploadController extends Controller
         return response()->json([
             'success' => true,
             'path' => $path,
+            'url' => Storage::disk('s3')->url($path),
         ]);
     }
 

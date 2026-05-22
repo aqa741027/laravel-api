@@ -12,4 +12,5 @@ Route::middleware('cloudfront.header')->group(function () {
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
     
     Route::post('/upload', [UploadController::class, 'upload']);
+    Route::get('/temporary-url', [UploadController::class, 'temporaryUrl']);
 });

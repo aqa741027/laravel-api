@@ -18,24 +18,25 @@ class UploadController extends Controller
         return response()->json([
             'success' => true,
             'path' => $path,
+            'url' => Storage::disk('s3')->url($path),
         ]);
     }
 
     public function temporaryUrl(Request $request)
-    {
-        $request->validate([
-            'path' => 'required|string',
-        ]);
+{
+    $request->validate([
+        'path' => 'required|string',
+    ]);
 
-        $url = Storage::disk('s3')->temporaryUrl(
-            $request->path,
-            now()->addMinutes(5)
-        );
+    $url = Storage::disk('s3')->temporaryUrl(
+        $request->path,
+        now()->addMinutes(5)
+    );
 
-        return response()->json([
-            'success' => true,
-            'temporary_url' => $url,
-            'expires_in_minutes' => 5,
-        ]);
-    }
+    return response()->json([
+        'success' => true,
+        'temporary_url' => $url,
+        'expires_in_minutes' => 5,
+    ]);
+}
 }
